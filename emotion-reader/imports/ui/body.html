@@ -1,0 +1,144 @@
+<head>
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/latest/<paper>/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Frijole" rel="stylesheet">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+
+<!-- <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1020591371405236',
+          status     : true,
+          xfbml      : true
+        });
+    };
+
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script> -->
+</head>
+<body>
+  <header>
+
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">EmotiBlog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+      <ul class="nav navbar-nav">
+        <!-- <li class="active"><a href="#">About<span class="sr-only">(current)</span></a></li> -->
+        <!-- <li><a href="#">Link</a></li> -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Learn more about natural language  processing technology <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Another action</a></li>
+            <!-- <li><a href="#">Something else here</a></li> -->
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li> {{> loginButtons}}</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  </header>
+  <main>
+  <!-- Coverr background  -->
+  <!-- <div class="homepage-hero-module">
+    <div class="video-container">
+        <div class="filter"></div>
+        <video autoplay loop class="fillWidth">
+            <source src="./Bokeh-Tov.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
+            <source src="./Bokeh-Tov.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
+        </video>
+        <div class="poster hidden">
+            <img src="./Bokeh-Tov.jpg" alt="">
+        </div>
+    </div>
+</div> -->
+
+  {{# if loggedIn}}
+  {{> hello}}
+  {{> editor}}
+
+  <div class="row">
+     <div class="twelve columns">
+       {{> stream}}
+     </div>
+   </div>
+
+
+  {{/if}}
+    <!-- <button class='test'>Click Me</button> -->
+
+  </main>
+</body>
+
+<template name="hello">
+ <h2>Welcome</h2>
+</template>
+
+<template name="stream">
+  {{#each posts}}
+    {{> post}}
+  {{/each}}
+</template>
+
+
+<template name="editor">
+  <form class="form-horizontal">
+  <fieldset>
+    <h3>Enter a new post</h3>
+    <div class="form-group">
+       <label class="col-lg-2 control-label">Name your post</label>
+   <!-- <h3>Новая запись</h3> -->
+   <!-- <label>Заголовок
+     <br> -->
+      <div class="col-lg-6">
+      <input type="text" class="form-control"  id="title-area" placeholder="Post Title">
+   <!-- </label> -->
+ </div>
+</div>
+<div class="form-group">
+ <label for="textArea" class="col-lg-2 control-label">What do you want to write about?</label>
+ <div class="col-lg-6">
+   <textarea class="form-control" rows="3" id="editor-area" placeholder="type here"></textarea>
+ </div>
+ <button id="submit-post" class="btn btn-info">Publish it!</button>
+</div>
+   </fieldset>
+  </form>
+</template>
+
+<template name="post">
+  <div class="panel">
+    <h2>{{title}}</h2>
+    <p>{{{text}}}</p>
+    <span class="btn btn-danger">Delete it</span>
+    {{published}}
+  </div>
+</template>
