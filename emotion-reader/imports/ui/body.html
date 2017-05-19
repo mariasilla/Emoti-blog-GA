@@ -1,7 +1,6 @@
 <head>
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/latest/<paper>/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Frijole" rel="stylesheet">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 
 <!-- <script>
     window.fbAsyncInit = function() {
@@ -53,13 +52,8 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
+
+      <ul class="nav navbar-nav" id="loginBtn">
         <li> {{> loginButtons}}</li>
       </ul>
     </div>
@@ -81,8 +75,10 @@
     </div>
 </div> -->
 
+
+  <!-- LoggedIn Session Starts here -->
   {{# if loggedIn}}
-  {{> hello}}
+  <!-- {{> hello}} -->
   {{> editor}}
 
   <div class="row">
@@ -92,10 +88,49 @@
    </div>
 
 
+  <!-- Watson API starts here-->
+       <!-- URL Form -->
+       <form class ="userInput">
+           <fieldset>
+               <legend>
+               Enter a Publicly-Accessible Web Site
+               </legend>
+               <input type="text" name="source" id="source" placeholder="e.g. http://nytimes.com">
+               <input type="submit" id="submit">
+         </fieldset>
+       </form>
+       <h2>Emotion Analysis</h2>
+       <h3>Source Web Page: <span id = "sourceURL"></span></h3>
+       <!-- <div class="chart-demo">
+         <div class="myChartDiv">
+           <canvas id="myChart" width="600" height="400"></canvas>
+         </div> -->
+       <!-- <canvas id="doughnutChart" width="300px" height="300px"></canvas> -->
+       <!-- </div> -->
+       <div id="js-legend" class="chart-legend"></div>
+
+           <b>Anger:</b>
+           <span id = "anger"></span><br>
+           <b>Disgust: </b>
+           <span id = "disgust"></span><br>
+           <b>Fear: </b>
+           <span id = "fear"></span><br>
+           <b>Joy: </b>
+           <span id = "joy"></span><br>
+           <b>Sadness: </b>
+           <span id = "sadness"></span><br>
+           <b>Unknown: </b>
+           <span id = "unknown"></span><br>
+           <b>Source Text: </b>
+           <span id = "sourceText"></span><br>
+     <!-- Watson API ends here-->
+
+
   {{/if}}
-    <!-- <button class='test'>Click Me</button> -->
+  <!-- LoggedIn Session ends here -->
 
   </main>
+
 </body>
 
 <template name="hello">
@@ -105,6 +140,7 @@
 <template name="stream">
   {{#each posts}}
     {{> post}}
+
   {{/each}}
 </template>
 
@@ -138,7 +174,7 @@
   <div class="panel">
     <h2>{{title}}</h2>
     <p>{{{text}}}</p>
-    <span class="btn btn-danger">Delete it</span>
+    <span class="btn btn-danger remove">Delete it</span>
     {{published}}
   </div>
 </template>

@@ -11,13 +11,19 @@
   color: black;
   font-size: 20px;
 }
+#loginBtn {
+  float: right;
+  margin-right: 136px;
+  margin-top: 14px;
+}
 label {
   font-size: 17px;
 }
 .panel {
   margin-left: 20px;
 }
-/*Coverr css */
+
+/*Coverr css starts here */
 .homepage-hero-module {
     border-right: none;
     border-left: none;
@@ -58,4 +64,19 @@ label {
 }
 .video-container video.fillWidth {
     width: 100%;
+}
+/*Coverr css ends here */
+
+/*Watson CSS starts here*/
+.chart-legend li span{
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+}
+
+
+.myChartDiv {
+  max-width: 600px;
+  max-height: 400px;
 }
