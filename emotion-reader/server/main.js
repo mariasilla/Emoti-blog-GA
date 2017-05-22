@@ -1,14 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/items.js';
+
+
+
 var sadness;
 var joy;
 var fear;
 var disgust;
 var anger;
+var unknownEm;
 
 
 Meteor.startup(() => {
-
+ //Posts Collection
   if (Posts.find().count() === 0) {
        var posts = [
        {
@@ -42,7 +46,6 @@ Meteor.startup(() => {
 
 'use strict';
 const fs = require('fs');
-const path = require('path')
 const NaturalLanguageUnderstandingV1 = require('watson-developer-cloud/natural-language-understanding/v1.js');
 // require('dotenv').config({ silent: true }); //  optional
 
@@ -78,14 +81,21 @@ console.log(filename);
         return;
       }
 
-      sadness = res.keywords[0].emotion.sadness;
-      joy = res.keywords[0].emotion.joy;
-      fear = res.keywords[0].emotion.fear;
-      disgust = res.keywords[0].emotion.disgust;
-      anger = res.keywords[0].emotion.anger;
-
-      console.log(sadness, joy, fear, disgust, anger);
-    });
- });
-
+      sadness = (res.keywords[0].emotion.sadness * 100).toFixed(2);
+      joy = (res.keywords[0].emotion.joy * 100).toFixed(2);
+      fear = (res.keywords[0].emotion.fear * 100).toFixed(2);
+      disgust = (res.keywords[0].emotion.disgust * 100).toFixed(2);
+      anger = (res.keywords[0].emotion.anger * 100).toFixed(2);
+      unknownEm = 100 - (parseInt(sadness) + parseInt(joy) + parseInt(fear) + parseInt(disgust) + parseInt(anger));
+      console.log(unknownEm);
+      console.log(sadness, joy, fear, disgust, anger, unknownEm);
+//       Meteor.methods({
+//         emotion: function () {
+//         return sadness;
+//   },
 // });
+
+    });
+
+
+ });

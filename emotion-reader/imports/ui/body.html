@@ -2,78 +2,63 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootswatch/latest/<paper>/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Frijole" rel="stylesheet">
 
-<!-- <script>
-    window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '1020591371405236',
-          status     : true,
-          xfbml      : true
-        });
-    };
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script> -->
 </head>
 <body>
   <header>
 
-    <nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">EmotiBlog</a>
-    </div>
+<nav class="navbar  navbar-fixed-top" role="navigation">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">EmotiBlog</a>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-      <ul class="nav navbar-nav">
-        <!-- <li class="active"><a href="#">About<span class="sr-only">(current)</span></a></li> -->
-        <!-- <li><a href="#">Link</a></li> -->
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Learn more about natural language  processing technology <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Another action</a></li>
-            <!-- <li><a href="#">Something else here</a></li> -->
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  <li>
+                      <a href="#" data-toggle="tooltip" data-placement="bottom" title="Welcome!" class="about">About</a>
+                  </li>
+                  <li>
+                      <a href="https://natural-language-understanding-demo.mybluemix.net/" target="_blank">Learn more about NLP</a>
+                  </li>
+                  <li id="lgBtns">{{> loginButtons}} </li>
 
-      <ul class="nav navbar-nav" id="loginBtn">
-        <li> {{> loginButtons}}</li>
-      </ul>
-    </div>
-  </div>
-</nav>
+
+                    <!-- <div class="dropdown" id="language-menu">
+                      <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-globe fa-2x"></i><span lang="en" class="english">Language</span><span lang="ru" class="russian">Язык</span><span lang="es" class="spanish">Idioma</span> <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dLabel">
+                        <li><a href="">English</a></li>
+                        <li><a href="" lang="ru">Русский</a></li>
+                        <li><a href="" lang="es">Español</a></li>
+                      </ul>
+                 </div> -->
+
+              </ul>
+
+          </div>
+          <!-- /.navbar-collapse -->
+
+      </div>
+      <!-- /.container -->
+
+
+  </nav>
+
   </header>
   <main>
-  <!-- Coverr background  -->
-  <!-- <div class="homepage-hero-module">
-    <div class="video-container">
-        <div class="filter"></div>
-        <video autoplay loop class="fillWidth">
-            <source src="./Bokeh-Tov.mp4" type="video/mp4" />Your browser does not support the video tag. I suggest you upgrade your browser.
-            <source src="./Bokeh-Tov.webm" type="video/webm" />Your browser does not support the video tag. I suggest you upgrade your browser.
-        </video>
-        <div class="poster hidden">
-            <img src="./Bokeh-Tov.jpg" alt="">
-        </div>
-    </div>
-</div> -->
+  <!-- Video background  -->
+  <video autoplay loop muted poster="screenshot.jpg" id="background">
+   <source src="http://res.cloudinary.com/dhu2xlp4m/video/upload/v1495193648/Coverr-grass_yn8eqv.mp4" type="video/mp4">
+</video>
 
 
   <!-- LoggedIn Session Starts here -->
@@ -81,50 +66,11 @@
   <!-- {{> hello}} -->
   {{> editor}}
 
-  <div class="row">
+  <div class="row vertical-center" id="blogEntryDiv">
      <div class="twelve columns">
        {{> stream}}
      </div>
    </div>
-
-
-  <!-- Watson API starts here-->
-       <!-- URL Form -->
-       <form class ="userInput">
-           <fieldset>
-               <legend>
-               Enter a Publicly-Accessible Web Site
-               </legend>
-               <input type="text" name="source" id="source" placeholder="e.g. http://nytimes.com">
-               <input type="submit" id="submit">
-         </fieldset>
-       </form>
-       <h2>Emotion Analysis</h2>
-       <h3>Source Web Page: <span id = "sourceURL"></span></h3>
-       <!-- <div class="chart-demo">
-         <div class="myChartDiv">
-           <canvas id="myChart" width="600" height="400"></canvas>
-         </div> -->
-       <!-- <canvas id="doughnutChart" width="300px" height="300px"></canvas> -->
-       <!-- </div> -->
-       <div id="js-legend" class="chart-legend"></div>
-
-           <b>Anger:</b>
-           <span id = "anger"></span><br>
-           <b>Disgust: </b>
-           <span id = "disgust"></span><br>
-           <b>Fear: </b>
-           <span id = "fear"></span><br>
-           <b>Joy: </b>
-           <span id = "joy"></span><br>
-           <b>Sadness: </b>
-           <span id = "sadness"></span><br>
-           <b>Unknown: </b>
-           <span id = "unknown"></span><br>
-           <b>Source Text: </b>
-           <span id = "sourceText"></span><br>
-     <!-- Watson API ends here-->
-
 
   {{/if}}
   <!-- LoggedIn Session ends here -->
@@ -146,9 +92,9 @@
 
 
 <template name="editor">
-  <form class="form-horizontal">
+  <form class="form-horizontal" id="postForm">
   <fieldset>
-    <h3>Enter a new post</h3>
+    <h3 id="formHead">Write a new blog entry</h3>
     <div class="form-group">
        <label class="col-lg-2 control-label">Name your post</label>
    <!-- <h3>Новая запись</h3> -->
@@ -175,6 +121,30 @@
     <h2>{{title}}</h2>
     <p>{{{text}}}</p>
     <span class="btn btn-danger remove">Delete it</span>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"  id="emotionBtn">Analyze Emotion</button>
+    <!-- <span class="btn btn-info" data-toggle="modal" data-target="#myModal" id="emotionBtn">Analyze Emotion</span> -->
     {{published}}
+    <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+<!-- Bootstrap Modal -->
+    <div class="modal" id="myModal">
+   <div class="modal-dialog modal-lg">
+     <div class="modal-content">
+       <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <h4 class="modal-title">Emotion Analysis</h4>
+       </div>
+       <div class="modal-body" id="modalBody">
+         <!-- <p>One fine body…</p> -->
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <!-- D3 Button -->
+         <!-- <button type="button" class="randomize btn btn-primary">randomize</button> -->
+       </div>
+     </div>
+   </div>
+ </div>
+ <!-- Bootstrap Modal Ends-->
+
   </div>
 </template>
