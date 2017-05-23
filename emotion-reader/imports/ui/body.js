@@ -28,10 +28,10 @@ Template.body.events({
   //the first property is a string
   "click #emotionBtn": (event) => {
     $( "#myModal" ).off();
-    $('#myModal').modal('show');
+    $("#myModal").modal("show");
     addD3();
-    Meteor.call('emotion',function(err, response) {
-           Session.set('sadness', response);
+    Meteor.call("emotion",function(err, response) {
+           Session.set("sadness", response);
            console.log(sadness);
        });
 
