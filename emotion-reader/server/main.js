@@ -1,8 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/api/items.js';
 
-
-
 var sadness;
 var joy;
 var fear;
